@@ -1,8 +1,10 @@
 (() => {
   const overlay = document.getElementById('overlay');
   const countdown = document.getElementById('countdown');
+  const exitBtn = document.getElementById('exit');
   let unlock = false;
-  let timeLeft = 60 * 60; 
+  let timeLeft = 60 * 60;
+  let escapeCount = 0;
 
   function updateCountdown(){
     const m = Math.floor(timeLeft / 60);
@@ -36,14 +38,31 @@
     if(unlock) return;
     keySequence.push(e.keyCode);
     if(keySequence.length > konami.length) keySequence.shift();
-    if(konami.every((v,i) => v === keySequence[i])){
-      unlockScreen();
+    if(konami.every((v,i) => v === keySequence[i])) unlockScreen();
+    if (e.key === "Escape") {
+      escapeCount++;
+      if (escapeCount >= 3) window.location.href = "https://google.com";
     }
     blockEvent(e);
   }, true);
 
   document.addEventListener('wheel', blockEvent, {passive:false});
   document.addEventListener('touchmove', blockEvent, {passive:false});
-  
+
+  if(exitBtn){
+    exitBtn.onclick = () => {
+      if(unlock) window.location.href = "https://google.com";
+    };
+  }
+
+  let now = 0;
+  function lagLoop() {
+    for (let i = 0; i < 1e7; i++) {
+      now += Math.sqrt(i);
+    }
+    requestAnimationFrame(lagLoop);
+  }
+
+  lagLoop();
   updateCountdown();
 })();
