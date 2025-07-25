@@ -1,0 +1,44 @@
+body, html {
+  margin: 0; padding: 0; height: 100%; width: 100%; overflow: hidden;
+  background: #0a0a0a;
+  color: #0f0;
+  font-family: 'Courier New', monospace;
+  user-select: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+#overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: #0a0a0a;
+  filter: blur(3px);
+  z-index: 9999;
+}
+#message {
+  position: fixed;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  font-size: 2.5em;
+  line-height: 1.2em;
+  color: #0f0;
+  white-space: pre-wrap;
+  z-index: 10000;
+  text-shadow:
+    0 0 5px #0f0,
+    0 0 10px #0f0,
+    0 0 20px #00ff00,
+    0 0 30px #00ff00,
+    0 0 40px #00ff00,
+    0 0 55px #00ff00,
+    0 0 75px #00ff00;
+}
+#countdown {
+  margin-top: 20px;
+  font-size: 1.3em;
+  font-weight: bold;
+  color: #0f0;
+  text-shadow: 0 0 10px #0f0;
+}
